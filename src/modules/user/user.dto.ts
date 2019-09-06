@@ -1,4 +1,4 @@
-import { Role } from "../role/role.entity";
+import { Role } from '../role/role.entity';
 
 export class UserDto {
   readonly name: string;

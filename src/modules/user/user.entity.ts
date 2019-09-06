@@ -1,4 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
 import { Post } from '../post/post.entity';
@@ -24,11 +35,11 @@ export class User {
   updated: Date;
 
   @OneToMany(type => Post, post => post.user)
-  posts: Post[]
+  posts: Post[];
 
   @ManyToMany(type => Post, post => post.liked)
   @JoinTable()
-  voted: Post[]
+  voted: Post[];
 
   @OneToMany(type => Comment, comment => comment.user)
   comments: Comment[];

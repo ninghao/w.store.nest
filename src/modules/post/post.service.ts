@@ -12,17 +12,16 @@ export class PostService {
   constructor(
     @InjectRepository(Post)
     private readonly postRepository: Repository<Post>,
-
     @InjectRepository(Tag)
-    private readonly tagRepository: Repository<Tag>
-  ) { }
+    private readonly tagRepository: Repository<Tag>,
+  ) {}
 
   async beforeTag(tags: Partial<Tag>[]) {
     const _tags = tags.map(async item => {
       const { id, name } = item;
 
       if (id) {
-        const _tag = await this.tagRepository.findOne(id)
+        const _tag = await this.tagRepository.findOne(id);
 
         if (_tag) {
           return _tag;
@@ -55,15 +54,14 @@ export class PostService {
     const entity = await this.postRepository.create(data);
     await this.postRepository.save({
       ...entity,
-      user
+      user,
     });
     return entity;
   }
 
   async index(options: ListOptionsInterface) {
     const { categories, tags, page, limit, sort, order } = options;
-    const queryBuilder = await this.postRepository
-      .createQueryBuilder('post');
+    const queryBuilder = await this.postRepository.createQueryBuilder('post');
 
     queryBuilder.leftJoinAndSelect('post.user', 'user');
     queryBuilder.leftJoinAndSelect('post.category', 'category');
@@ -77,14 +75,11 @@ export class PostService {
       queryBuilder.andWhere('tag.name IN (:...tags)', { tags });
     }
 
-    queryBuilder
-      .take(limit)
-      .skip(limit * (page - 1));
+    queryBuilder.take(limit).skip(limit * (page - 1));
 
-    queryBuilder
-      .orderBy({
-        [`post.${sort}`]: order
-      });
+    queryBuilder.orderBy({
+      [`post.${sort}`]: order,
+    });
 
     const entities = queryBuilder.getManyAndCount();
     return entities;
@@ -101,8 +96,9 @@ export class PostService {
 
     await this.postRepository.update(id, data);
 
-    const entity = await this.postRepository
-      .findOne(id, { relations: ['category', 'tags'] });
+    const entity = await this.postRepository.findOne(id, {
+      relations: ['category', 'tags'],
+    });
 
     if (tags) {
       entity.tags = await this.beforeTag(tags);

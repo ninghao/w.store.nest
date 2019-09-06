@@ -9,14 +9,14 @@ import { CommentDto } from './comment.dto';
 export class CommentService {
   constructor(
     @InjectRepository(Comment)
-    private readonly commentRepository: Repository<Comment>
-  ) { }
+    private readonly commentRepository: Repository<Comment>,
+  ) {}
 
   async storePostComment(id: number, user: User, data: CommentDto) {
     return await this.commentRepository.save({
       user,
       ...data,
-      post: { id }
+      post: { id },
     });
   }
 
@@ -34,7 +34,7 @@ export class CommentService {
       .leftJoinAndSelect('comment.user', 'user')
       .leftJoinAndSelect('comment.post', 'post')
       .where('post.id = :id', { id })
-      .getMany()
+      .getMany();
   }
 
   async showUserComments(id: number) {
@@ -43,6 +43,6 @@ export class CommentService {
       .leftJoinAndSelect('comment.user', 'user')
       .leftJoinAndSelect('comment.post', 'post')
       .where('user.id = :id', { id })
-      .getMany()
+      .getMany();
   }
 }

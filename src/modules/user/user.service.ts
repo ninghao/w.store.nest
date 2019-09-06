@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
@@ -8,15 +12,15 @@ import { UserDto, UpdatePasswordDto } from './user.dto';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>
-  ) { }
+    private readonly userRepository: Repository<User>,
+  ) {}
 
   async store(data: UserDto) {
     const { name } = data;
     const user = await this.userRepository.findOne({ name });
 
     if (user) {
-      throw new BadRequestException('用户已经存在了。')
+      throw new BadRequestException('用户已经存在了。');
     }
 
     const entity = await this.userRepository.create(data);
@@ -26,7 +30,7 @@ export class UserService {
 
   async show(id: string) {
     const entity = await this.userRepository.findOne(id, {
-      relations: ['posts']
+      relations: ['posts'],
     });
 
     if (!entity) {
@@ -56,8 +60,7 @@ export class UserService {
   }
 
   async findByName(name: string, password?: boolean) {
-    const queryBuilder = await this.userRepository
-      .createQueryBuilder('user');
+    const queryBuilder = await this.userRepository.createQueryBuilder('user');
 
     queryBuilder
       .where('user.name = :name', { name })
@@ -73,8 +76,9 @@ export class UserService {
   }
 
   async liked(id: number) {
-    return this.userRepository
-      .findOne(id, { relations: ['voted', 'voted.user'] });
+    return this.userRepository.findOne(id, {
+      relations: ['voted', 'voted.user'],
+    });
   }
 
   async update(id: number, data: UserDto) {
@@ -89,11 +93,7 @@ export class UserService {
     return await this.userRepository.save(entity);
   }
 
-  async possess(
-    id: number,
-    resource: string,
-    resourceId: number
-  ) {
+  async possess(id: number, resource: string, resourceId: number) {
     const result = await this.userRepository
       .createQueryBuilder('user')
       .where('user.id = :id', { id })

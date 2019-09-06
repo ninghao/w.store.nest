@@ -6,11 +6,8 @@ import { Comment } from './comment.entity';
 import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Comment]),
-    AuthModule
-  ],
+  imports: [TypeOrmModule.forFeature([Comment]), AuthModule],
   controllers: [CommentController],
-  providers: [CommentService]
+  providers: [CommentService],
 })
-export class CommentModule { }
+export class CommentModule {}

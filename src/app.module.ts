@@ -21,9 +21,9 @@ import { FileModule } from './modules/file/file.module';
     TagModule,
     CommentModule,
     RoleModule,
-    FileModule
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

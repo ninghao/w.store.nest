@@ -8,8 +8,8 @@ import { Repository } from 'typeorm';
 export class FileService {
   constructor(
     @InjectRepository(File)
-    private readonly fileRepository: Repository<File>
-  ) { }
+    private readonly fileRepository: Repository<File>,
+  ) {}
 
   async store(data: FileDto) {
     return await this.fileRepository.save(data);

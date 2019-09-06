@@ -7,11 +7,8 @@ import { AuthModule } from '../auth/auth.module';
 import { Tag } from '../tag/tag.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Post, Tag]),
-    AuthModule
-  ],
+  imports: [TypeOrmModule.forFeature([Post, Tag]), AuthModule],
   controllers: [PostController],
-  providers: [PostService]
+  providers: [PostService],
 })
-export class PostModule { }
+export class PostModule {}

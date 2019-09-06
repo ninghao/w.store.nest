@@ -8,8 +8,8 @@ import { TagDto } from './tag.dto';
 export class TagService {
   constructor(
     @InjectRepository(Tag)
-    private readonly tagRepository: Repository<Tag>
-  ) { }
+    private readonly tagRepository: Repository<Tag>,
+  ) {}
 
   async store(data: TagDto) {
     return await this.tagRepository.save(data);

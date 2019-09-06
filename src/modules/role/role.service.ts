@@ -8,8 +8,8 @@ import { RoleDto } from './role.dto';
 export class RoleService {
   constructor(
     @InjectRepository(Role)
-    private readonly roleRepository: Repository<Role>
-  ) { }
+    private readonly roleRepository: Repository<Role>,
+  ) {}
 
   async store(data: RoleDto) {
     return await this.roleRepository.save(data);

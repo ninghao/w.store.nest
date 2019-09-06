@@ -8,8 +8,8 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthService {
   constructor(
     private readonly userService: UserService,
-    private readonly jwtService: JwtService
-  ) { }
+    private readonly jwtService: JwtService,
+  ) {}
 
   async login(data: LoginDto) {
     const { name, password } = data;
@@ -29,8 +29,8 @@ export class AuthService {
 
     return {
       ...payload,
-      token
-    }
+      token,
+    };
   }
 
   signToken(data: JwtPayload) {

@@ -8,8 +8,8 @@ import { CategoryDto } from './category.dto';
 export class CategoryService {
   constructor(
     @InjectRepository(Category)
-    private readonly categoryRepository: Repository<Category>
-  ) { }
+    private readonly categoryRepository: Repository<Category>,
+  ) {}
 
   async store(data: CategoryDto) {
     const entity = await this.categoryRepository.create(data);
