@@ -15,15 +15,15 @@ import {
 import { PostService } from './post.service';
 import { PostDto } from './post.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { User } from 'src/core/decorators/user.decorator';
+import { User } from '../../core/decorators/user.decorator';
 import { User as UserEntity } from '../user/user.entity';
-import { ListOptions } from 'src/core/decorators/list-options.decorator';
-import { ListOptionsInterface } from 'src/core/interfaces/list-options.interface';
-import { TransformInterceptor } from 'src/core/interceptors/transform.interceptor';
-import { AccessGuard } from 'src/core/guards/access.guard';
-import { Permissions } from 'src/core/decorators/permissions.decorator';
-import { Resource } from 'src/core/enums/resource.enum';
-import { Possession } from 'src/core/enums/possession.enum';
+import { ListOptions } from '../../core/decorators/list-options.decorator';
+import { ListOptionsInterface } from '../../core/interfaces/list-options.interface';
+import { TransformInterceptor } from '../../core/interceptors/transform.interceptor';
+import { AccessGuard } from '../../core/guards/access.guard';
+import { Permissions } from '../../core/decorators/permissions.decorator';
+import { Resource } from '../../core/enums/resource.enum';
+import { Possession } from '../../core/enums/possession.enum';
 import { UserRole } from '../../core/enums/user-role.enum';
 
 @Controller('posts')

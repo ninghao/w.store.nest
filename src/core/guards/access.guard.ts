@@ -2,9 +2,9 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
 import { PermissionInterface } from '../interceptors/permission.interface';
-import { User } from 'src/modules/user/user.entity';
+import { User } from '../../modules/user/user.entity';
 import { Possession } from '../enums/possession.enum';
-import { UserService } from 'src/modules/user/user.service';
+import { UserService } from '../../modules/user/user.service';
 
 @Injectable()
 export class AccessGuard implements CanActivate {

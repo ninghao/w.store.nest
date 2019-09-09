@@ -4,7 +4,7 @@ import { Post } from './post.entity';
 import { Repository } from 'typeorm';
 import { PostDto } from './post.dto';
 import { User } from '../user/user.entity';
-import { ListOptionsInterface } from 'src/core/interfaces/list-options.interface';
+import { ListOptionsInterface } from '../../core/interfaces/list-options.interface';
 import { Tag } from '../tag/tag.entity';
 
 @Injectable()

@@ -14,7 +14,7 @@ import {
 import { CommentService } from './comment.service';
 import { AuthGuard } from '@nestjs/passport';
 import { CommentDto } from './comment.dto';
-import { User } from 'src/core/decorators/user.decorator';
+import { User } from '../../core/decorators/user.decorator';
 import { User as UserEntity } from '../user/user.entity';
 
 @Controller()
