@@ -24,7 +24,7 @@ import { AccessGuard } from 'src/core/guards/access.guard';
 import { Permissions } from 'src/core/decorators/permissions.decorator';
 import { Resource } from 'src/core/enums/resource.enum';
 import { Possession } from 'src/core/enums/possession.enum';
-import { UserRole } from 'src/core/enums/user-role.enum';
+import { UserRole } from '../../core/enums/user-role.enum';
 
 @Controller('posts')
 export class PostController {
