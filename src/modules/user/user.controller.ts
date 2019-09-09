@@ -11,11 +11,12 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserDto, UpdatePasswordDto } from './user.dto';
+import { UserDto } from './user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AccessGuard } from '../../core/guards/access.guard';
 import { Permissions } from '../../core/decorators/permissions.decorator';
 import { UserRole } from '../../core/enums/user-role.enum';
+import { UpdatePasswordDto } from './update-password.dto';
 
 @Controller('users')
 export class UserController {

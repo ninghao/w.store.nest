@@ -5,8 +5,3 @@ export class UserDto {
   readonly password: string;
   readonly roles: Role[];
 }
-
-export class UpdatePasswordDto {
-  readonly password: string;
-  readonly newPassword: string;
-}

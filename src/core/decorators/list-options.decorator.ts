@@ -14,13 +14,13 @@ export const ListOptions = createParamDecorator(
     }
 
     if (page) {
-      page = parseInt(page);
+      page = parseInt(page, 10);
     } else {
       page = 1;
     }
 
     if (limit) {
-      limit = parseInt(limit);
+      limit = parseInt(limit, 10);
     } else if (limit === undefined && data.limit) {
       limit = data.limit;
     } else {

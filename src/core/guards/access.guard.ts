@@ -48,7 +48,7 @@ export class AccessGuard implements CanActivate {
     const results = await this.validatePermissions(
       permissions,
       request.user,
-      parseInt(request.params.id),
+      parseInt(request.params.id, 10),
     );
 
     return results.includes(true);

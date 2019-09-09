@@ -16,32 +16,32 @@ export class PostService {
     private readonly tagRepository: Repository<Tag>,
   ) {}
 
-  async beforeTag(tags: Partial<Tag>[]) {
-    const _tags = tags.map(async item => {
+  async beforeTag(tags: Array<Partial<Tag>>) {
+    const entities = tags.map(async item => {
       const { id, name } = item;
 
       if (id) {
-        const _tag = await this.tagRepository.findOne(id);
+        const tag = await this.tagRepository.findOne(id);
 
-        if (_tag) {
-          return _tag;
+        if (tag) {
+          return tag;
         }
 
         return;
       }
 
       if (name) {
-        const _tag = await this.tagRepository.findOne({ name });
+        const tag = await this.tagRepository.findOne({ name });
 
-        if (_tag) {
-          return _tag;
+        if (tag) {
+          return tag;
         }
 
         return await this.tagRepository.save(item);
       }
     });
 
-    return Promise.all(_tags);
+    return Promise.all(entities);
   }
 
   async store(data: PostDto, user: User) {
