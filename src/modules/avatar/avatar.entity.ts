@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  AfterLoad,
+} from 'typeorm';
 import { User } from '../user/user.entity';
 
 @Entity()
@@ -14,4 +20,12 @@ export class Avatar {
 
   @ManyToOne(type => User, user => user.avatar, { nullable: false })
   user: User;
+
+  url: string;
+
+  @AfterLoad()
+  getUrl() {
+    const appUrl = process.env.APP_URL;
+    this.url = `${appUrl}/avatar/${this.id}`;
+  }
 }
