@@ -15,6 +15,7 @@ import { Exclude } from 'class-transformer';
 import { Post } from '../post/post.entity';
 import { Comment } from '../comment/comment.entity';
 import { Role } from '../role/role.entity';
+import { Avatar } from '../avatar/avatar.entity';
 
 @Entity()
 export class User {
@@ -47,6 +48,9 @@ export class User {
   @ManyToMany(type => Role, role => role.users)
   @JoinTable()
   roles: Role[];
+
+  @OneToMany(type => Avatar, avatar => avatar.user)
+  avatar: Avatar[];
 
   @BeforeInsert()
   @BeforeUpdate()

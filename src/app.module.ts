@@ -10,6 +10,7 @@ import { TagModule } from './modules/tag/tag.module';
 import { CommentModule } from './modules/comment/comment.module';
 import { RoleModule } from './modules/role/role.module';
 import { FileModule } from './modules/file/file.module';
+import { AvatarModule } from './modules/avatar/avatar.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { FileModule } from './modules/file/file.module';
     CommentModule,
     RoleModule,
     FileModule,
+    AvatarModule,
   ],
   controllers: [AppController],
   providers: [AppService],
