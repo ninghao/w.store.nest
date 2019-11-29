@@ -15,4 +15,8 @@ export class AvatarService {
   async store(data: FileDto, user: User) {
     return await this.avatarRepository.save({ ...data, user });
   }
+
+  async show(id: number) {
+    return await this.avatarRepository.findOne(id);
+  }
 }
