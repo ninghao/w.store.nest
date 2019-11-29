@@ -11,6 +11,7 @@ import { CommentModule } from './modules/comment/comment.module';
 import { RoleModule } from './modules/role/role.module';
 import { FileModule } from './modules/file/file.module';
 import { AvatarModule } from './modules/avatar/avatar.module';
+import { ImageProcessModule } from './modules/image-process/image-process.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AvatarModule } from './modules/avatar/avatar.module';
     RoleModule,
     FileModule,
     AvatarModule,
+    ImageProcessModule,
   ],
   controllers: [AppController],
   providers: [AppService],
