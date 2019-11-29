@@ -30,15 +30,28 @@ export class UserService {
   }
 
   async show(id: string) {
-    const entity = await this.userRepository.findOne(id, {
-      relations: ['posts'],
-    });
+    const entity = await this.userRepository.findOne(id);
 
     if (!entity) {
       throw new NotFoundException('没找到用户。');
     }
 
-    return entity;
+    const queryBuilder = this.userRepository.createQueryBuilder('user');
+
+    const avatarQueryResult = await queryBuilder
+      .where('user.id = :id', { id })
+      .leftJoinAndSelect('user.avatar', 'avatar')
+      .select(['user.id', 'avatar.id'])
+      .orderBy('avatar.id', 'DESC')
+      .limit(1)
+      .getOne();
+
+    const user = {
+      ...entity,
+      avatar: avatarQueryResult.avatar[0] ? avatarQueryResult.avatar[0] : null,
+    };
+
+    return user;
   }
 
   async updatePassword(id: string, data: UpdatePasswordDto) {
