@@ -8,6 +8,7 @@ import {
   Param,
   ParseIntPipe,
   Res,
+  Query,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -29,10 +30,19 @@ export class AvatarController {
   }
 
   @Get(':id')
-  async serve(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
+  async serve(
+    @Param('id', ParseIntPipe) id: number,
+    @Res() res: Response,
+    @Query('size') size: string,
+  ) {
     const file = await this.avatarService.show(id);
+    let { filename } = file;
 
-    res.sendFile(file.filename, {
+    if (size) {
+      filename = `${filename}-${size}`;
+    }
+
+    res.sendFile(filename, {
       root: 'uploads/avatar',
       headers: {
         'Content-type': file.mimetype,
